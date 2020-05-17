@@ -1,0 +1,42 @@
+{
+  "name": "fastify-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node index.ts",
+    "dev": "nodemon --watch './src/**/*.ts' --exec ts-node ./src/index.ts",
+    "test": "NODE_ENV=test jest --coverage",
+    "test:watch": "npm run test -- --watchAll",
+    "tslint": "tslint --project tsconfig.json --fix",
+    "pretty-quick": "pretty-quick",
+    "pretty-quick:check": "pretty-quick --check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.14.1",
+    "pino-pretty": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.2",
+    "@types/node": "^14.0.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "ts-jest": "^26.0.0",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --check && npm run tslint"
+    }
+  }
+}
