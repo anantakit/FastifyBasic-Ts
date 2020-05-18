@@ -3,7 +3,18 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "quotemark": [true, "single"]
+    "arrow-return-shorthand": true,
+    "quotemark": [true, "single"],
+    "no-debugger": true,
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "no-async-without-await": true
   },
   "rulesDirectory": []
 }

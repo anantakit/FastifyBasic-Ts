@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2017-latest 
+    command: /bin/bash ./entrypoint.sh
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD=Mysql!Server02
+    volumes:
+      - dbdata:/var/opt/mssql/data
+      - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
+      - ./db/mssql/docker-db-init.sh:/db-init.sh
+      - ./db/mssql/mssql-cars.sql:/db-init.sql
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - sql-server-db
+volumes:
+  dbdata:
